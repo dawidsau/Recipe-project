@@ -60,13 +60,4 @@ public class ApplicationControllerTest {
         Mockito.verify(categoryRepository, Mockito.times(1)).findAll();
         assertEquals("index", result);
     }
-
-    @Test
-    public void streamTesting() {
-        List<String> list = Lists.newArrayList("Element 1", "Element 4", "Element ", "Element 2", "Element 3");
-        list.stream()
-                .flatMap(string -> Arrays.stream(string.split("")))
-                .forEach(System.out::println);
-    }
-
 }
