@@ -9,6 +9,7 @@ import pl.sauerann.springbootrecipeproject.bootstrap.Bootstrap;
 import pl.sauerann.springbootrecipeproject.domain.Recipe;
 import pl.sauerann.springbootrecipeproject.repositories.CategoryRepository;
 import pl.sauerann.springbootrecipeproject.repositories.UnitOfMeasureRepository;
+import pl.sauerann.springbootrecipeproject.services.BasicRecipeService;
 import pl.sauerann.springbootrecipeproject.services.RecipeService;
 
 import java.util.HashSet;
@@ -35,8 +36,9 @@ public class ApplicationController {
     @RequestMapping({"/", "", "/index", "index", "*"})
     public String getIndexPage(Model model) {
         log.debug("Controller prepare index page");
-        HashSet<Recipe> guacamole = Sets.newHashSet(recipeService.getRecipeByName("Guacamole"));
-        model.addAttribute("recipes", guacamole);
+//        HashSet<Recipe> recipes = Sets.newHashSet(recipeService.getRecipeByName("Guacamole"));
+        HashSet<Recipe> recipes = Sets.newHashSet(recipeService.findAll());
+        model.addAttribute("recipes", recipes);
         model.addAttribute("categories", categoryRepository.findAll());
 
         return "index";

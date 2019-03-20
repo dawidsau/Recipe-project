@@ -29,7 +29,7 @@
                     <h1 class="panel-title">My Recipes!</h1>
                 </div>
                 <div class="panel-body">
-                    <div class="table-responsive" th:if="${not #lists.isEmpty(recipes)}">
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(ingredients)}">
                         <table class="table table-hover ">
                             <thead class="thead-inverse">
                             <tr>
@@ -50,13 +50,13 @@
                                 <td>Tasty Goodnees 2</td>
                                 <td><a href="#">View</a></td>
                             </tr>
-                            <tr th:each="recipe : ${recipes}">
-                                <!--/*@thymesVar id="recipe" type="springbootrecipeproject.domain.Recipe"*/-->
-                                <td th:text="${recipe.id}">334</td>
-                                <td th:text="${recipe.description}">Tasty Goodnees 3</td>
-                                <td><a href="#" th:href="@{'/recipe/show/' + ${recipe.id}}">View</a></td>
-                                <td><a href="#" th:href="@{'/recipe/update/' + ${recipe.id}}">Update</a></td>
-                                <td><a href="#" th:href="@{'/recipe/delete/' + ${recipe.id}}">Delete</a></td>
+                            <tr th:each="ingredient : ${ingredients}">
+                                <!--/*@thymesVar id="recipe" type="springbootrecipeproject.domain.ingredient"*/-->
+                                <td th:text="${ingredient.id}">334</td>
+                                <td th:text="${ingredient.description}">Tasty Goodnees 3</td>
+                                <td><a href="#" th:href="@{'/ingredient/show/' + ${ingredient.id}}">View</a></td>
+                                <td><a href="#" th:href="@{'/ingredient/update/' + ${ingredient.id}}">Update</a></td>
+                                <td><a href="#" th:href="@{'/ingredient/delete/' + ${ingredient.id}}">Delete</a></td>
                             </tr>
                         </table>
                     </div>

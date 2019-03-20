@@ -1,6 +1,5 @@
 package pl.sauerann.springbootrecipeproject.controller;
 
-import org.assertj.core.util.Lists;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -10,10 +9,7 @@ import org.springframework.ui.Model;
 import pl.sauerann.springbootrecipeproject.bootstrap.Bootstrap;
 import pl.sauerann.springbootrecipeproject.repositories.CategoryRepository;
 import pl.sauerann.springbootrecipeproject.repositories.UnitOfMeasureRepository;
-import pl.sauerann.springbootrecipeproject.services.RecipeService;
-
-import java.util.Arrays;
-import java.util.List;
+import pl.sauerann.springbootrecipeproject.services.BasicRecipeService;
 
 import static org.junit.Assert.assertEquals;
 
@@ -28,7 +24,7 @@ public class ApplicationControllerTest {
     private CategoryRepository categoryRepository;
 
     @Mock
-    private RecipeService recipeService;
+    private BasicRecipeService basicRecipeService;
 
     @Mock
     private Bootstrap bootstrap;
@@ -43,7 +39,7 @@ public class ApplicationControllerTest {
         controller = new ApplicationController(
                 unitOfMeasureRepository,
                 categoryRepository,
-                recipeService,
+                basicRecipeService,
                 bootstrap);
     }
 
@@ -56,7 +52,7 @@ public class ApplicationControllerTest {
                 .addAttribute(
                         Mockito.eq("recipes")
                         , Mockito.anySet());
-        Mockito.verify(recipeService, Mockito.times(1)).getRecipeByName("Guacamole");
+        Mockito.verify(basicRecipeService, Mockito.times(1)).getRecipeByName("Guacamole");
         Mockito.verify(categoryRepository, Mockito.times(1)).findAll();
         assertEquals("index", result);
     }

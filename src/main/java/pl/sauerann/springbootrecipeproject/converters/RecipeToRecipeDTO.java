@@ -35,14 +35,17 @@ public class RecipeToRecipeDTO implements Converter<Recipe, RecipeDTO> {
             return null;
         }
         Set<CategoryDTO> categoryDTOSet = new HashSet<>();
-        source.getCategories().forEach(
-                category -> categoryDTOSet.add(categoryToCategoryDTO.convert(category))
-        );
+        if (source.getCategories() != null) {
+            source.getCategories().forEach(
+                    category -> categoryDTOSet.add(categoryToCategoryDTO.convert(category))
+            );
+        }
         Set<IngredientDTO> ingredientDTOSet = new HashSet<>();
-        source.getIngredients().forEach(
-                ingredient -> ingredientDTOSet.add(ingredientToIngredientDTO.convert(ingredient))
-        );
-
+        if (source.getIngredients() != null) {
+            source.getIngredients().forEach(
+                    ingredient -> ingredientDTOSet.add(ingredientToIngredientDTO.convert(ingredient))
+            );
+        }
         RecipeDTO result = new RecipeDTO();
         result.setId(source.getId());
         result.setCategories(categoryDTOSet);
